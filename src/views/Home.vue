@@ -14,7 +14,7 @@
         @click="$router.push(`/article/${a.ID}`)"
       >
         <div class="card-meta">
-          <el-avatar :size="32" class="avatar">{{ a.user?.username?.[0]?.toUpperCase() }}</el-avatar>
+          <el-avatar :size="32" :src="a.user?.avatar || ''" class="avatar">{{ a.user?.username?.[0]?.toUpperCase() }}</el-avatar>
           <span class="author">{{ a.user?.username }}</span>
           <span class="date">{{ formatDate(a.CreatedAt) }}</span>
         </div>

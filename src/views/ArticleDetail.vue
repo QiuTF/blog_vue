@@ -4,11 +4,19 @@
       <el-card class="detail-card" shadow="never">
         <h1 class="title">{{ article.title }}</h1>
         <div class="meta">
-          <el-avatar :size="40" class="avatar">{{ article.user?.username?.[0]?.toUpperCase() }}</el-avatar>
+          <el-avatar :size="40" :src="article.user?.avatar || ''" class="avatar">{{ article.user?.username?.[0]?.toUpperCase() }}</el-avatar>
           <div class="meta-info">
             <span class="author">{{ article.user?.username }}</span>
             <span class="date">{{ formatDate(article.CreatedAt) }}</span>
           </div>
+          <el-button
+            v-if="isOwner"
+            type="primary"
+            size="small"
+            plain
+            @click="router.push(`/article/${route.params.id}/edit`)"
+            class="edit-btn"
+          >编辑文章</el-button>
           <el-button
             v-if="isOwner"
             type="danger"
@@ -86,7 +94,8 @@ onMounted(fetchArticle)
 .meta-info { display: flex; flex-direction: column; gap: 2px; }
 .author { font-weight: 600; color: #2c3e50; font-size: 15px; }
 .date { color: #aaa; font-size: 13px; }
-.del-btn { margin-left: auto; }
+.edit-btn { margin-left: auto; }
+.del-btn { margin-left: 0; }
 .content { font-size: 16px; line-height: 1.9; color: #34495e; white-space: pre-wrap; word-break: break-word; }
 .back-btn { margin-top: 24px; }
 </style>

@@ -77,9 +77,16 @@ export const authApi = {
   login: data => http.post('/login', data)
 }
 
+export const userApi = {
+  profile: () => http.get('/profile'),
+  updateProfile: data => http.put('/profile', data),
+  myArticles: params => http.get('/me/articles', { params })
+}
+
 export const articleApi = {
   list: params => http.get('/articles', { params }),
   get: id => http.get(`/articles/${id}`),
   create: data => http.post('/articles', data),
+  update: (id, data) => http.put(`/articles/${id}`, data),
   delete: id => http.delete(`/articles/${id}`)
 }

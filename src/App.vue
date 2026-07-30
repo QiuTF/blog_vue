@@ -8,10 +8,16 @@
           <template v-if="user">
             <router-link to="/publish">发布文章</router-link>
             <el-dropdown @command="handleCommand">
-              <span class="user-name">{{ user.username }} <el-icon><arrow-down /></el-icon></span>
+              <span class="user-name">
+                <el-avatar :size="28" :src="user.avatar || ''" class="nav-avatar">{{ user.username?.[0]?.toUpperCase() }}</el-avatar>
+                <span>{{ user.username }}</span>
+                <el-icon><arrow-down /></el-icon>
+              </span>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+                  <el-dropdown-item command="myArticles">我的文章</el-dropdown-item>
+                  <el-dropdown-item command="profile">我的资料</el-dropdown-item>
+                  <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -57,6 +63,16 @@ window.addEventListener('storage', syncUser)
 window.__refreshUser = syncUser
 
 function handleCommand(cmd) {
+  if (cmd === 'myArticles') {
+    router.push('/my/articles')
+    return
+  }
+
+  if (cmd === 'profile') {
+    router.push('/profile')
+    return
+  }
+
   if (cmd === 'logout') {
     clearAuth()
     user.value = null
@@ -87,7 +103,8 @@ a { text-decoration: none; color: inherit; }
 .nav { display: flex; align-items: center; gap: 24px; }
 .nav a { color: rgba(255,255,255,0.85); font-size: 15px; transition: color .2s; }
 .nav a:hover, .nav a.router-link-active { color: #fff; }
-.user-name { color: rgba(255,255,255,0.9); cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 15px; }
+.user-name { color: rgba(255,255,255,0.9); cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.nav-avatar { background: rgba(255,255,255,0.24); color: #fff; font-weight: 700; }
 
 .main { max-width: 1100px; margin: 0 auto; padding: 32px 20px; width: 100%; }
 

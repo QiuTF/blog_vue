@@ -42,11 +42,6 @@
             @pointerleave="stopDrag"
             @wheel.prevent="zoomByWheel"
           />
-          <div class="crop-grid"></div>
-          <div class="corner corner-tl"></div>
-          <div class="corner corner-tr"></div>
-          <div class="corner corner-bl"></div>
-          <div class="corner corner-br"></div>
         </div>
         <div class="crop-tools">
           <div>
@@ -306,17 +301,6 @@ function revokeUrl(url) {
 .crop-board { position: relative; width: 320px; height: 320px; border-radius: 22px; overflow: hidden; background: #f2f4f8; box-shadow: inset 0 0 0 1px #dde3ee; touch-action: none; }
 .crop-canvas { width: 320px; height: 320px; display: block; cursor: grab; }
 .crop-canvas:active { cursor: grabbing; }
-.crop-grid {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(90deg, transparent 33.2%, rgba(255,255,255,0.7) 33.4%, rgba(255,255,255,0.7) 33.7%, transparent 33.9%, transparent 66.2%, rgba(255,255,255,0.7) 66.4%, rgba(255,255,255,0.7) 66.7%, transparent 66.9%),
-    linear-gradient(0deg, transparent 33.2%, rgba(255,255,255,0.7) 33.4%, rgba(255,255,255,0.7) 33.7%, transparent 33.9%, transparent 66.2%, rgba(255,255,255,0.7) 66.4%, rgba(255,255,255,0.7) 66.7%, transparent 66.9%);
-}
-.corner { position: absolute; width: 34px; height: 34px; border-color: #fff; pointer-events: none; }
-.corner-tl { left: 14px; top: 14px; border-left: 4px solid; border-top: 4px solid; }
-.corner-tr { right: 14px; top: 14px; border-right: 4px solid; border-top: 4px solid; }
-.corner-bl { left: 14px; bottom: 14px; border-left: 4px solid; border-bottom: 4px solid; }
-.corner-br { right: 14px; bottom: 14px; border-right: 4px solid; border-bottom: 4px solid; }
 .crop-tools { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; min-width: 0; }
 .tool-title { font-weight: 700; color: #2c3e50; margin-bottom: 6px; }
 .tool-hint { color: #7f8c8d; font-size: 14px; line-height: 1.7; }
